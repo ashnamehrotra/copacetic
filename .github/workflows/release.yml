@@ -42,7 +42,7 @@ jobs:
           tag="$(echo "${{ github.ref }}" | tr -d 'refs/tags/v')"
           payload="{\"event_type\": \"copa_release\", \"client_payload\": { \"version\": \"$tag\" }}"
           curl -H "Accept: application/vnd.github.everest-preview+json" \
-          -H "Authorization: token ${{ secrets.AUTH_TOKEN }}" \
+          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
           --request POST \
           --data "$payload" \
           https://api.github.com/repos/ashnamehrotra/copa-action/dispatches
