@@ -43,5 +43,5 @@ jobs:
           curl -H "Accept: application/vnd.github.everest-preview+json" \
           -H "Authorization: token ${{ secrets.AUTH_TOKEN }}" \
           --request POST \
-          --data '{"event_type": "copa_release", "client_payload": { "version": "$tag}}' \
+          --data '{"event_type": "copa_release", "client_payload": { "version": "$tag"}}' \
           https://api.github.com/repos/ashnamehrotra/copa-action/dispatches
