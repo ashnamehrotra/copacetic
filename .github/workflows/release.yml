@@ -40,8 +40,9 @@ jobs:
       - name: Trigger Repo Dispatch for Copa Action Release
         run: |
           tag="$(echo "${{ github.ref }}" | tr -d 'refs/tags/v')"
+          payload="{\"event_type\": \"copa_release\", \"client_payload\": { \"version\": \"$tag\" }}"
           curl -H "Accept: application/vnd.github.everest-preview+json" \
           -H "Authorization: token ${{ secrets.AUTH_TOKEN }}" \
           --request POST \
-          --data '{"event_type": "copa_release", "client_payload": { "version": "$tag"}}' \
+          --data "$payload" \
           https://api.github.com/repos/ashnamehrotra/copa-action/dispatches
