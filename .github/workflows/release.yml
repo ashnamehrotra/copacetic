@@ -55,4 +55,5 @@ jobs:
 
       - name: Build and push copa-action image with new version
         run: |
+          tag="$(echo "${{ github.ref }}" | tr -d 'refs/tags/v')"
           docker buildx build --build-arg copa_version=${tag} -t ghcr.io/ashnamehrotra/copa-action:v"$tag" --push .
