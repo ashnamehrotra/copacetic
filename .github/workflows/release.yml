@@ -40,7 +40,7 @@ jobs:
       - name: Checkout Copa Action Repo
         uses: actions/checkout@v2
         with:
-          repository: ashnamehrotra/copa-action
+          repository: project-copacetic/copa-action
           ref: main
 
       - name: Set up Docker
