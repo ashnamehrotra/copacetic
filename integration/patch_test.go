@@ -225,6 +225,7 @@ func (s *scannerCmd) scan(t *testing.T, ref string, ignoreErrors bool) {
 	cmd.Env = append(cmd.Env, os.Environ()...)
 	cmd.Env = append(cmd.Env, dockerDINDAddress.env()...)
 	out, err := cmd.CombinedOutput()
+	t.Log("OUTPUT", string(out))
 	assert.NoError(t, err, string(out))
 }
 
