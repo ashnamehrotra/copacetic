@@ -173,7 +173,7 @@ func patch(t *testing.T, ref, patchedTag, path string, ignoreErrors bool) {
 		"-t="+patchedTag,
 		"-r="+path+"/scan.json",
 		"-s="+scannerPlugin,
-		"--timeout=60m",
+		"--timeout=5m",
 		addrFl,
 		"--ignore-errors="+strconv.FormatBool(ignoreErrors),
 		"--output="+path+"/vex.json",
@@ -212,6 +212,7 @@ func (s *scannerCmd) scan(t *testing.T, ref string, ignoreErrors bool) {
 		args = append(args, "--skip-db-update")
 	}
 	if s.ignoreFile != "" {
+		t.Log("IGNORE FILE NOT NIL", "IGNORE POLICY", s.ignoreFile)
 		args = append(args, "--ignore-policy="+s.ignoreFile)
 	}
 	// If ignoreErrors is false, we expect a non-zero exit code.
