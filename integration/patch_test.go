@@ -212,7 +212,7 @@ func (s *scannerCmd) scan(t *testing.T, ref string, ignoreErrors bool) {
 		args = append(args, "--skip-db-update")
 	}
 	if s.ignoreFile != "" {
-		t.Log("IGNORE FILE NOT NIL", "IGNORE POLICY", s.ignoreFile, "VALS", trivyIgnore)
+		t.Log("IGNORE FILE NOT NIL", "IGNORE POLICY", s.ignoreFile, "VALS", string(trivyIgnore))
 		args = append(args, "--ignore-policy="+s.ignoreFile)
 	}
 	// If ignoreErrors is false, we expect a non-zero exit code.
