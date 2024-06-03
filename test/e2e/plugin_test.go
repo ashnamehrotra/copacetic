@@ -5,6 +5,7 @@ import (
 	"os/exec"
 	"testing"
 
+	"github.com/davecgh/go-spew/spew"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -51,5 +52,6 @@ func runPatch(image, report string) ([]byte, error) {
 		"-a="+buildkitAddr,
 	)
 	out, err := cmd.CombinedOutput()
+	spew.Dump(string(out))
 	return out, err
 }
