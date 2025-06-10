@@ -18,7 +18,7 @@ copa patch \
   --report-directory <path-to-your-reports-directory> \
   --tag <desired-patched-image-tag> \
   [--push] \
-  [--platform-specific-errors <fail|warn|skip>] \
+  [--ignore-errors] \
 ```
 
 Key Flags for Multi-Arch Patching:
@@ -26,7 +26,7 @@ Key Flags for Multi-Arch Patching:
 - `--report-directory <directory_path>`: Specifies the directory containing platform-specific vulnerability reports.
 - `--tag <final_tag>` (optional): The tag for the final, reassembled multi-arch manifest (e.g., `1.0-patched`).
 - `--push` (optional): If included, Copa pushes the final multi-arch manifest to the registry.
-- `--platform-specific-errors <fail|warn|skip>` (optional, default: `skip`): Determines how Copa handles errors encountered while patching an individual platform's sub-image.
+- `--ignore-errors` (optional, default: `false`): If included, Copa will skip errors during platform-specific patching and continue with other platforms. By default, Copa fails on any platform error. Errors are always logged as warnings.
 
 ### Example:
 

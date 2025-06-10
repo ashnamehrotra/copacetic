@@ -174,7 +174,6 @@ func patchMultiArch(t *testing.T, ref, patchedTag, reportDir string, ignoreError
 		addrFl,
 		"--ignore-errors=" + strconv.FormatBool(ignoreErrors),
 		"--debug",
-		"--platform-specific-errors=fail",
 	}
 	if push {
 		args = append(args, "--push")
