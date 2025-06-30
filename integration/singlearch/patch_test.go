@@ -93,6 +93,10 @@ func TestPatch(t *testing.T) {
 			require.NoError(t, err, err)
 
 			tagPatched := img.Tag + "-patched"
+			// For no-report tests, append -amd64 to match the platform-specific tag created by copa patch
+			if !reportFile {
+				tagPatched += "-amd64"
+			}
 			patchedRef := fmt.Sprintf("%s:%s", r.Name(), tagPatched)
 
 			patchedMediaType, err := utils.GetMediaType(imageRef, imageloader.Docker)
@@ -176,6 +180,11 @@ func patch(t *testing.T, ref, patchedTag, path string, ignoreErrors bool, report
 		reportPath = "-r=" + path + "/scan.json"
 	}
 
+	var platformsFlag string
+	if !reportFile {
+		platformsFlag = "--platforms=linux/amd64"
+	}
+
 	//#nosec G204
 	cmd := exec.Command(
 		copaPath,
@@ -186,6 +195,7 @@ func patch(t *testing.T, ref, patchedTag, path string, ignoreErrors bool, report
 		"-s="+scannerPlugin,
 		"--timeout=30m",
 		addrFl,
+		platformsFlag,
 		"--ignore-errors="+strconv.FormatBool(ignoreErrors),
 		"--output="+path+"/vex.json",
 		"--debug",
